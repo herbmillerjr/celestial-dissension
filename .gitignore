@@ -3,4 +3,4 @@ main
 *.dll
 *.exe
 *kdev4*
-
+.kdev_include_paths

@@ -1,12 +1,13 @@
 /****\
 |  File Name: CD.hpp (Celestial Dissension)
-|  Description: Main header defining game's namespace and central class
+|  Description: Main header declaring game's namespace and central class
 |  Usage: This most likely will need to be included in all source files
 \****/
 
 
 /*// includes //*/
 #include "SDL.h"
+#include "Logger.hpp"
 /*// end includes //*/
 
 
@@ -46,6 +47,7 @@ namespace CD
 		~Game();
 	private:
 		SDL_Window *window;
+		Logger *log;
 	};
 	/** end class Game **/
 }

@@ -12,8 +12,10 @@ EXE=main.exe
 all: $(EXE)
 
 	
-$(EXE): main.o CD.o
+$(EXE): Logger.o CD.o main.o
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
+Logger.o: Logger.cpp
+	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
 main.o: main.cpp
 	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
 CD.o: CD.cpp
