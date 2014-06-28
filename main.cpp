@@ -1,16 +1,24 @@
-#include "SDL2/SDL.h"
+/****\
+|  File Name: main.cpp (Celestial Dissension)
+|  Description: source containing application entry point
+|  Goal: Keep as little in here as possible!
+\****/
+
+/*// includes //*/
+#include "CD.hpp"
+/*// end includes //*/
+
 
 /****\
-|
+|  Function Name: main
+|  Description: good old classic application entry point
+|  Goal: Keep as little in here as possible!
 \****/
 int main(int argc, char* args[])
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	
-	SDL_Window *win = SDL_CreateWindow("Hellow World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-	
-	SDL_Event state;
-	bool quit=false;
+	CD::Game game;
+
+	SDL_Event state; bool quit=false;
 	while(!quit)
 	{
 		while(SDL_PollEvent(&state))
@@ -21,7 +29,8 @@ int main(int argc, char* args[])
 		}
 	}
 	
-	SDL_Quit();
-	
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,"Leaving application entry point.");
 	return 0;
 }
+/** end function main **/
+
