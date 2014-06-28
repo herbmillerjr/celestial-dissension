@@ -20,7 +20,7 @@ const char* gconst::Title="Celestial Dissension";
 \****/
 Game::Game()
 {
-	log=new Logger(); log->Info("Opening new log for CD");
+	log=new Logger(); log->Create("Opening new log for CD");
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window=SDL_CreateWindow(gconst::Title,SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,gconst::ResX,gconst::ResY,SDL_WINDOW_SHOWN);
 
@@ -34,7 +34,7 @@ Game::Game()
 Game::~Game()
 {
 	SDL_Quit();
-	log->Info("Destroy SDL and Game.");
+	log->Destroy("Destroy SDL and Game.");
 	delete log;
 }
 /** end member function ~Game **/

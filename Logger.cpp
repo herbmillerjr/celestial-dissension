@@ -9,12 +9,16 @@
 #include "SDL.h"
 /*// end includes //*/
 
+/*// static definitions //*/
+unsigned int Logger::refcount=0;
+/*// end static definitions //*/
+
 
 /****\
 |  Member Function Name: Info
 |  Description: Output simple status message to console
 \****/
-Logger::Info(const char* msg)
+void Logger::Info(const char* msg)
 {
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,msg);
 }
@@ -23,7 +27,7 @@ Logger::Info(const char* msg)
 |  Member Function Name: Warn
 |  Description: Output message when something unexpected happens
 \****/
-Logger::Warn(char* msg)
+void Logger::Warn(char* msg)
 {
 }
 
@@ -31,6 +35,31 @@ Logger::Warn(char* msg)
 |  Member Function Name: Error
 |  Description: Output message when something fatal happens
 \****/
-Logger::Error(char* msg)
+void Logger::Error(char* msg)
 {
 }
+
+
+
+/*// debug message section //*/
+
+/****\
+|  Member Function Name: Create
+|  Description: Should be called every time an object is created.
+|    Maintains a general, global reference count of allocated objects.
+\****/
+void Logger::Create(std::string msg)
+{
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,(((std::string)"(Memory) Create: ")+msg+" (Ref: "+std::to_string(++refcount)+")").c_str());
+}
+
+/****\
+|  Member Function Name: Create
+|  Description: Should be called every time an object is created.
+|    Maintains a general, global reference count of allocated objects.
+\****/
+void Logger::Destroy(std::string msg)
+{
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,(((std::string)"(Memory) Destroy: ")+msg+" (Ref: "+std::to_string(--refcount)+")").c_str());
+}
+/*// end debug message section //*/
