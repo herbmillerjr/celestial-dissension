@@ -45,8 +45,8 @@ namespace CD
 	public:
 		Game();
 		~Game();
-	private:
 		SDL_Window *window;
+	private:
 		Logger *log;
 	};
 	/** end class Game **/
