@@ -18,16 +18,7 @@ int main(int argc, char* args[])
 {
 	CD::Game game;
 
-	SDL_Event state; bool quit=false;
-	while(!quit)
-	{
-		while(SDL_PollEvent(&state))
-		{
-			if (state.type==SDL_QUIT)
-				quit=true;
-			
-		}
-	}
+	while(!game.GameOver())	{game.Loop();}
 	
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,"Leaving application entry point.");
 	return 0;
