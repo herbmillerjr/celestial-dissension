@@ -8,6 +8,7 @@
 /*// includes //*/
 #include "SDL.h"
 #include "Logger.hpp"
+#include "abstracts.hpp"
 /*// end includes //*/
 
 
@@ -46,15 +47,19 @@ namespace CD
 		static Game* getInstance();
 		~Game();
 		SDL_Window* getWindow();
+		SDL_Renderer* getRenderer();
 		void GameOver();	// delete singleton class and flags it to not be reinstantiated
 		void Loop();		// main message processing loop
 							// TODO: something doesn't feel right about this not having a return type
 	private:
 		Game();
+		SDL_Event event;			// putting this here even though it's only used by Loop because it's
+									// going to get created and destroyed over and over again and that annoys me
 		static Game *instance;
 		static SDL_Window *window;	// pointer to the application window
 		Logger *log;		// pointer to the object that outputs log messages to console
 		static bool game_over;		// true if exiting application, else false
+		State *state;
 	};
 	/** end class Game **/
 }

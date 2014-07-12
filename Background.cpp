@@ -7,7 +7,6 @@
 
 /*// includes //*/
 #include "Background.hpp"
-#include "CD.hpp"
 /*// end includes //*/
 
 
@@ -21,7 +20,6 @@
 \****/
 StarScrollBackground::StarScrollBackground()
 {
-	SDL_Renderer *ren=SDL_CreateRenderer(CD::Game::getInstance()->getWindow(),-1,SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
 }
 
 /****\

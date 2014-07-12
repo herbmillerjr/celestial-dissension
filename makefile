@@ -12,7 +12,7 @@ EXE=main.exe
 all: $(EXE)
 
 	
-$(EXE): Logger.o CD.o main.o MenuItem.o Background.o
+$(EXE): Logger.o CD.o main.o MenuItem.o Renderer.o Background.o Intro.o
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
 Logger.o: Logger.cpp
 	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
@@ -23,6 +23,10 @@ CD.o: CD.cpp
 MenuItem.o: MenuItem.cpp
 	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
 Background.o: Background.cpp
+	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
+Renderer.o: Renderer.cpp
+	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
+Intro.o: Intro.cpp
 	$(CXX) -c $(CXXFLAGS) $(SDL_INCLUDE) $< -o $@
 	
 clean:

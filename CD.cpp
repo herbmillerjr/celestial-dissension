@@ -5,6 +5,8 @@
 
 /*// includes //*/
 #include "CD.hpp"
+#include "Renderer.hpp"
+#include "Intro.hpp"
 /*// end includes //*/
 
 using namespace CD; // this is the only namespace this file should access
@@ -43,6 +45,7 @@ Game::Game()
 	log=new Logger(); log->Create("Opening new log for CD");
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window=SDL_CreateWindow(gconst::Title,SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,gconst::ResX,gconst::ResY,SDL_WINDOW_SHOWN);
+	state=Intro::getInstance();		// load the first scene
 }
 /*** end member function Game ***/
 
@@ -69,12 +72,15 @@ Game::~Game()
 \****/
 void Game::Loop()
 {
-	SDL_Event event;
+	// parse messages
 	while(SDL_PollEvent(&event))
 	{
 		if (event.type==SDL_QUIT)
 			GameOver();
 	}
+	// draw scene if were not in an end-game state
+	// otherwise there is not renderer and no scene to draw
+	if(!game_over){SDL_RenderPresent(Renderer::getContext());}
 }
 
 /****\
@@ -87,8 +93,7 @@ void Game::Loop()
 void Game::GameOver()
 {
 	game_over=true;
-	delete instance;
-	instance=NULL;
+	delete instance; instance=NULL;
 }
 
 /*// end main processing loop //*/
@@ -105,5 +110,14 @@ void Game::GameOver()
 \****/
 SDL_Window* Game::getWindow() {return window;}
 /*** end getWindow ***/
+
+/****\
+|  Member Function Name: getRenderer
+|  Description: Returns pointer to rendering context
+|    obtained from singleton Renderer. If one doesn't
+|    exist, one is created.
+\****/
+SDL_Renderer* Game::getRenderer() {return Renderer::getContext();}
+/*** end getRenderer ***/
 
 /*// end accessors //*/

@@ -1,3 +1,6 @@
+//#ifndef ABSTRACTS_H
+//#define ABSTRACTS_H
+
 /****\
 |  File Name: abstracts.hpp (abstract classes)
 |  Description: Declaring base classes for game engine components
@@ -29,3 +32,5 @@ private:
 	SDL_Texture* texture;
 };
 /** end class Logger **/
+
+//#endif
