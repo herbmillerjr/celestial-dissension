@@ -53,5 +53,8 @@
     <ClInclude Include="..\Menu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

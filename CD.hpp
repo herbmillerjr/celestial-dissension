@@ -43,16 +43,18 @@ namespace CD
 	class Game
 	{
 	public:
-		Game();
+		static Game* getInstance();
 		~Game();
-		static SDL_Window* getWindow();
-		bool GameOver();	// returns value of game_over
+		SDL_Window* getWindow();
+		void GameOver();	// delete singleton class and flags it to not be reinstantiated
 		void Loop();		// main message processing loop
 							// TODO: something doesn't feel right about this not having a return type
 	private:
+		Game();
+		static Game *instance;
 		static SDL_Window *window;	// pointer to the application window
 		Logger *log;		// pointer to the object that outputs log messages to console
-		bool game_over;		// true if exiting application, else false
+		static bool game_over;		// true if exiting application, else false
 	};
 	/** end class Game **/
 }

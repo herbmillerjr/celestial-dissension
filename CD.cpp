@@ -14,8 +14,24 @@ const char* gconst::Title="Celestial Dissension";
 /*// end define constants //*/
 
 /*// define static members //*/
-SDL_Window* CD::Game::window=NULL;
+Game* Game::instance=NULL;
+SDL_Window* Game::window=NULL;
+bool Game::game_over=false;
 /*// end define static members //*/
+
+
+
+/****\
+|  Member Function Name: getInstance
+|  Description: Calls constructor if there is no game object,
+|    returns its own pointer if there is.
+\****/
+Game* Game::getInstance()
+{
+	if(!instance&&!game_over) {instance=new Game;}
+	return instance;
+}
+/*** end member function getInstance ***/
 
 
 /****\
@@ -27,9 +43,8 @@ Game::Game()
 	log=new Logger(); log->Create("Opening new log for CD");
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window=SDL_CreateWindow(gconst::Title,SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,gconst::ResX,gconst::ResY,SDL_WINDOW_SHOWN);
-	game_over=false;
 }
-/** end member function Game **/
+/*** end member function Game ***/
 
 
 /****\
@@ -58,8 +73,22 @@ void Game::Loop()
 	while(SDL_PollEvent(&event))
 	{
 		if (event.type==SDL_QUIT)
-			game_over=true;
+			GameOver();
 	}
+}
+
+/****\
+|  Member Function Name: GameOver()
+|  Description: Deletes main game object, deallocating everything.
+|    Sets game_over to true, which blocks recreation of game object.
+|    Program has no choice but to exit (or crash if you wish to
+|    insist on processing a NULL pointer).
+\****/
+void Game::GameOver()
+{
+	game_over=true;
+	delete instance;
+	instance=NULL;
 }
 
 /*// end main processing loop //*/
@@ -74,15 +103,7 @@ void Game::Loop()
 |    the renderer and other functions in other classes will need to
 |    reference this.
 \****/
-SDL_Window* Game::getWindow()
-{
-	return window;
-}
-
-/****\
-|  Member Function Name: GameOver()
-|  Description: Returns value of game_over, true if we're exiting the application, else false
-\****/
-bool Game::GameOver() {return game_over;}
+SDL_Window* Game::getWindow() {return window;}
+/*** end getWindow ***/
 
 /*// end accessors //*/

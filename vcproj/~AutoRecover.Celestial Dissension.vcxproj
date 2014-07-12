@@ -73,6 +73,7 @@
     <ClInclude Include="..\Logger.hpp" />
     <ClInclude Include="..\Menu.hpp" />
     <ClInclude Include="..\MenuItem.hpp" />
+    <ClInclude Include="..\Renderer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Background.cpp" />

@@ -21,7 +21,7 @@
 \****/
 StarScrollBackground::StarScrollBackground()
 {
-	//SDL_Renderer *ren=SDL_CreateRenderer(CD::Game::getWindow(),-1,SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
+	SDL_Renderer *ren=SDL_CreateRenderer(CD::Game::getInstance()->getWindow(),-1,SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
 }
 
 /****\
