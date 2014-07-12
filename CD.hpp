@@ -45,11 +45,12 @@ namespace CD
 	public:
 		Game();
 		~Game();
+		static SDL_Window* getWindow();
 		bool GameOver();	// returns value of game_over
 		void Loop();		// main message processing loop
 							// TODO: something doesn't feel right about this not having a return type
 	private:
-		SDL_Window *window;	// pointer to the application window
+		static SDL_Window *window;	// pointer to the application window
 		Logger *log;		// pointer to the object that outputs log messages to console
 		bool game_over;		// true if exiting application, else false
 	};

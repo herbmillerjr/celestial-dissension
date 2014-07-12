@@ -23,5 +23,5 @@ int main(int argc, char* args[])
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,"Leaving application entry point.");
 	return 0;
 }
-/** end function main **/
+/*** end function main ***/
 

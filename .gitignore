@@ -4,3 +4,11 @@ main
 *.exe
 *kdev4*
 .kdev_include_paths
+
+*.png
+
+SDL2/
+SDL2_image/
+libpng/
+zlib/
+

@@ -13,6 +13,9 @@ using namespace CD; // this is the only namespace this file should access
 const char* gconst::Title="Celestial Dissension";
 /*// end define constants //*/
 
+/*// define static members //*/
+SDL_Window* CD::Game::window=NULL;
+/*// end define static members //*/
 
 
 /****\
@@ -64,6 +67,17 @@ void Game::Loop()
 
 
 /*// accessors //*/
+
+/****\
+|  Member Function Name: getWindow
+|  Description: Returns pointer to the main application window since
+|    the renderer and other functions in other classes will need to
+|    reference this.
+\****/
+SDL_Window* Game::getWindow()
+{
+	return window;
+}
 
 /****\
 |  Member Function Name: GameOver()
