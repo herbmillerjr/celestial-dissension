@@ -8,20 +8,24 @@
 
 using namespace CD;
 
-std::string Game::title="Celestial Dissension";
+class BlankState : public State
+{
+public:
+	void Present(Renderer &renderer)
+	{
+		renderer.Clear();
+	};
+};
+
+//std::string Game::title="Celestial Dissension";
 
 /****\
 |  Member Function Name: Game
 |  Description: Constructor
 \****/
-Game::Game(const Dimensions &dimensions) : dimensions(dimensions), currentState(nullptr)
+Game::Game(Context &context): context(context),currentState(nullptr)
 {
-	class NullState : public State
-	{
-	public:
-		void Present(SDL_Renderer *renderer) const override { };
-	};
-	currentState=std::make_unique<NullState>();
+	currentState=std::make_unique<BlankState>();
 
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,"Push event");
 	SDL_Event startEvent;
@@ -48,6 +52,11 @@ Game::~Game()
 void Game::Start(SDL_Renderer *renderer)
 {
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_INFO,"Make a menu");
-	currentState=std::make_unique<Menu>();
+	//currentState=std::make_unique<Menu>();
 }
 
+void Game::operator()()
+{
+	currentState->Present(context.Renderer());
+	context.Renderer().Present();
+}

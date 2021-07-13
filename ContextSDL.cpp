@@ -6,6 +6,8 @@ class RendererSDL: public Renderer
 public:
 	RendererSDL(const WindowSDL &window);
 	~RendererSDL() override;
+	void Clear() override;
+	void Present() override;
 protected:
 	SDL_Renderer *renderer;
 };
@@ -30,6 +32,17 @@ RendererSDL::RendererSDL(const WindowSDL &window)
 RendererSDL::~RendererSDL()
 {
 	SDL_DestroyRenderer(renderer);
+}
+
+void RendererSDL::Clear()
+{
+	SDL_SetRenderDrawColor(renderer,0,0,0,0);
+	SDL_RenderClear(renderer);
+}
+
+void RendererSDL::Present()
+{
+	SDL_RenderPresent(renderer);
 }
 
 WindowSDL::WindowSDL(const std::string &title,const Dimensions &dimensions): window(nullptr)

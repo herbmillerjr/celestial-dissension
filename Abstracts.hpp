@@ -9,12 +9,6 @@
 #include <functional>
 #include <string>
 
-class State
-{
-public:
-	virtual void Present(SDL_Renderer *renderer) const=0;
-};
-
 template <typename T>
 class Connection
 {
@@ -51,13 +45,3 @@ protected:
 	unsigned int width;
 	unsigned int height;
 };
-
-namespace Generic
-{
-	class Game
-	{
-	public:
-		virtual const Dimensions& Viewport() const=0;
-		virtual const std::string& Title() const=0;
-	};
-}

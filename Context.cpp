@@ -6,7 +6,7 @@ Window::~Window() { }
 
 bool Context::initialized=false;
 
-Context::Context(Window &window,Renderer &renderer): window(window),renderer(renderer)
+Context::Context(Window &window,class Renderer &renderer): window(window),renderer(renderer)
 {
 	if (!initialized)
 	{

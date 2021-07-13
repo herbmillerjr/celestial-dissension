@@ -46,6 +46,7 @@ int main(int argument_count,char* arguments[])
 	}
 
 	Context context(*window,*renderer);
+	CD::Game game(context);
 
 	bool running=true;
 	SDL_Event event;
@@ -74,6 +75,7 @@ int main(int argument_count,char* arguments[])
 			}
 		}
 		
+		game();
 		/*SDL_SetRenderDrawColor(renderer.get(),0,0,0,0);
 		SDL_RenderClear(renderer.get());
 		game.CurrentState().Present(renderer.get());

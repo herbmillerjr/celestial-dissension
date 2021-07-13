@@ -1,13 +1,14 @@
+#pragma once
+
 /****\
 |  File Name: CD.hpp (Celestial Dissension)
 |  Description: Main header declaring game's namespace and central class
 |  Usage: This most likely will need to be included in all source files
 \****/
 
-
-#include "SDL2/SDL.h"
 #include "Logger.hpp"
 #include "Abstracts.hpp"
+#include "Context.hpp"
 #include <memory>
 
 
@@ -23,25 +24,29 @@ namespace CD
 		RENDERING_CONNECTION
 	};
 	
+	class State
+	{
+	public:
+		virtual void Present(Renderer &renderer)=0;
+	};
+
 	/****\
 	|  Class Name: Game
 	|  Description: This is the main "game" class.
 	|  Usage: Create an instance of this before anything else.
 	|  To Do: Limit number of instances of this class?
 	\****/
-	class Game : Generic::Game
+	class Game
 	{
 	public:
-		Game(const Dimensions &dimensions);
+		Game(Context &context);
 		~Game();
 		void Start(SDL_Renderer *renderer);
-		const Dimensions& Viewport() const override { return dimensions; }
-		const std::string& Title() const override { return title; }
 		const State& CurrentState() const { return *currentState.get(); }
+		void operator()();
 	protected:
-		Dimensions dimensions;
-		static std::string title;
 		Logger log;
+		Context &context;
 		std::unique_ptr<State> currentState;
 	};
 }
