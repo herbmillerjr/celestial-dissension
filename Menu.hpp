@@ -1,17 +1,19 @@
+#pragma once
+
 /****\
 |  File Name: Menu.hpp
-|  Description: Declares the games main menu class
+|  Description: Declares the game's main menu class
 \****/
 
-/*// includes //*/
-#include "abstracts.hpp"
-/*// end includes //*/
+#include "CD.hpp"
 
-
-class Menu:public State
+namespace CD
 {
-publc:
-	Menu();
-	~Menu();
-};
-
+	class Menu : public State
+	{
+	public:
+		Menu();
+		~Menu();
+		void Present(Renderer &renderer) override;
+	};
+}

@@ -3,11 +3,9 @@
 |  Description: The games main menu implemented as a State object
 \****/
 
-/*// includes //*/
 #include "Menu.hpp"
-/*// end includes //*/
 
-
+using namespace CD;
 
 /****\
 |  Member Function Name: Menu
@@ -23,6 +21,11 @@ Menu::Menu()
 |  Description: Destructor
 \****/
 Menu::~Menu()
+{
+	
+}
+
+void Menu::Present(Renderer &renderer)
 {
 	
 }
